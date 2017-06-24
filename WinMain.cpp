@@ -4,38 +4,36 @@ LRESULT CALLBACK WinProc(HWND, UINT, WPARAM, LPARAM);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR strCmdLine, int nShowCmd)
 {
-	////µÓ∑œ∞˙¡§
-
-	WNDCLASSEX wcex;			//¿©µµøÏ ¡§∫∏ ±∏¡∂√º
+	WNDCLASSEX wcex;			//Windows information structure
 	memset(&wcex, 0, sizeof(wcex));
 
-	wcex.cbSize			= sizeof(wcex);							//¿©µµøÏ ±∏¡∂√º ≈©±‚
-	wcex.style			= CS_HREDRAW | CS_VREDRAW;					//≈¨∑°Ω∫ Ω∫≈∏¿œ
-	wcex.hbrBackground	= (HBRUSH)GetStockObject(LTGRAY_BRUSH);		//≈¨∂Û¿Ãæ∆Æ πË∞Êªˆ
-	wcex.hCursor			= LoadCursor(NULL, IDC_ARROW);				//ƒøº≠ ∏æÁ
-	wcex.hIcon			= LoadIcon(NULL, IDI_APPLICATION);			//æ∆¿Ãƒ‹ ∏æÁ
-	wcex.hInstance		= hInstance;								//«¡∑Œ±◊∑• π¯»£
-	wcex.cbClsExtra		= 0;										//
-	wcex.cbWndExtra		= 0;										//
-	wcex.hIconSm			= NULL;									//
-	wcex.lpszMenuName		= NULL;									//
-	wcex.lpfnWndProc		= WinProc;								//∏ﬁΩ√¡ˆ √≥∏Æ «‘ºˆ («‘ºˆ ∆˜¿Œ≈Õ∏¶ ¥„¥¬ ¿Âº“)
-	wcex.lpszClassName	= L"MyWindow";							//¿ß º≥¡§¿« ¿©µµøÏ ≈¨∑°Ω∫ ¿Ã∏ß
+	wcex.cbSize			= sizeof(wcex);						//size of Windows structure
+	wcex.style			= CS_HREDRAW | CS_VREDRAW;				//class style
+	wcex.hbrBackground	= (HBRUSH)GetStockObject(LTGRAY_BRUSH);				//client background color
+	wcex.hCursor			= LoadCursor(NULL, IDC_ARROW);				//cursor shape
+	wcex.hIcon			= LoadIcon(NULL, IDI_APPLICATION);			//icon shape
+	wcex.hInstance		= hInstance;							//program number
+	wcex.cbClsExtra		= 0;								//
+	wcex.cbWndExtra		= 0;								//
+	wcex.hIconSm			= NULL;							//
+	wcex.lpszMenuName		= NULL;							//
+	wcex.lpfnWndProc		= WinProc;						//Function that manage Message (place to put function pointer)Î©îÏãúÏßÄ Ï≤òÎ¶¨ Ìï®Ïàò (Ìï®Ïàò Ìè¨Ïù∏ÌÑ∞Î•º Îã¥Îäî Ïû•ÏÜå)
+	wcex.lpszClassName	= L"MyWindow";							//Windows class name of the above setting
 	RegisterClassEx(&wcex);
 	///////
 
 
-	//∏∏µÈ±‚
+	//Making
 	HWND hWnd = CreateWindow(L"MyWindow", L"MyWindow", WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, NULL, NULL, hInstance, NULL);
 
 	if(hWnd == NULL)
 	{
-		MessageBox(NULL, L"¿©µµøÏ ª˝º∫ Ω«∆–", L"ø°∑Ø", MB_ICONERROR | MB_OK);
+		MessageBox(NULL, L"failed to creat Windows", L"errors", MB_ICONERROR | MB_OK);
 		return -1;
 	}
 
-	//√‚∑¬
+	//output
 	ShowWindow(hWnd, SW_SHOW);
 
 
